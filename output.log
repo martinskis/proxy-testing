@@ -1,0 +1,690 @@
+➜  proxy-testing git:(main) ✗ ./run.sh
+Generating RSA private key, 4096 bit long modulus
+......................................................................................................................................++
+.............................................++
+e is 65537 (0x10001)
+Generating RSA private key, 2048 bit long modulus
+............................+++
+..................+++
+e is 65537 (0x10001)
+Signature ok
+subject=/CN=test_proxy
+Getting CA Private Key
+[+] Building 0.9s (11/11) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                                                                                                                                     0.0s
+ => => transferring dockerfile: 176B                                                                                                                                                                                                                     0.0s
+ => [internal] load .dockerignore                                                                                                                                                                                                                        0.0s
+ => => transferring context: 2B                                                                                                                                                                                                                          0.0s
+ => [internal] load metadata for docker.io/library/golang:latest                                                                                                                                                                                         0.0s
+ => [1/6] FROM docker.io/library/golang:latest                                                                                                                                                                                                           0.0s
+ => [internal] load build context                                                                                                                                                                                                                        0.0s
+ => => transferring context: 5.65kB                                                                                                                                                                                                                      0.0s
+ => CACHED [2/6] WORKDIR /go/src                                                                                                                                                                                                                         0.0s
+ => CACHED [3/6] COPY proxy.go /go/src/                                                                                                                                                                                                                  0.0s
+ => [4/6] COPY server.pem /go/src/                                                                                                                                                                                                                       0.0s
+ => [5/6] COPY server.key /go/src/                                                                                                                                                                                                                       0.0s
+ => [6/6] RUN go build proxy.go                                                                                                                                                                                                                          0.7s
+ => exporting to image                                                                                                                                                                                                                                   0.1s
+ => => exporting layers                                                                                                                                                                                                                                  0.1s
+ => => writing image sha256:f166ea7a4046a3debb06a7966f6d1114466a3d5cedac055a77d24125e6b29b46                                                                                                                                                             0.0s
+ => => naming to docker.io/library/go_proxy                                                                                                                                                                                                              0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+[+] Building 0.9s (9/9) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                                                                                                                                     0.0s
+ => => transferring dockerfile: 154B                                                                                                                                                                                                                     0.0s
+ => [internal] load .dockerignore                                                                                                                                                                                                                        0.0s
+ => => transferring context: 2B                                                                                                                                                                                                                          0.0s
+ => [internal] load metadata for docker.io/library/centos:7                                                                                                                                                                                              0.0s
+ => [1/4] FROM docker.io/library/centos:7                                                                                                                                                                                                                0.0s
+ => [internal] load build context                                                                                                                                                                                                                        0.0s
+ => => transferring context: 1.88kB                                                                                                                                                                                                                      0.0s
+ => CACHED [2/4] RUN yum install -y openssl                                                                                                                                                                                                              0.0s
+ => [3/4] COPY rootCA.crt /etc/pki/ca-trust/source/anchors/                                                                                                                                                                                              0.0s
+ => [4/4] RUN update-ca-trust                                                                                                                                                                                                                            0.7s
+ => exporting to image                                                                                                                                                                                                                                   0.0s
+ => => exporting layers                                                                                                                                                                                                                                  0.0s
+ => => writing image sha256:d5541a8b6b09c768d787d6ee1e18b71d9c54e4d5a88a189d00e2fc289ac2beb9                                                                                                                                                             0.0s
+ => => naming to docker.io/library/centos7_client                                                                                                                                                                                                        0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+[+] Building 1.1s (8/8) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                                                                                                                                     0.0s
+ => => transferring dockerfile: 155B                                                                                                                                                                                                                     0.0s
+ => [internal] load .dockerignore                                                                                                                                                                                                                        0.0s
+ => => transferring context: 2B                                                                                                                                                                                                                          0.0s
+ => [internal] load metadata for docker.io/swimlane/swimlane-tools:1.2.0                                                                                                                                                                                 0.0s
+ => [internal] load build context                                                                                                                                                                                                                        0.0s
+ => => transferring context: 1.88kB                                                                                                                                                                                                                      0.0s
+ => CACHED [1/3] FROM docker.io/swimlane/swimlane-tools:1.2.0                                                                                                                                                                                            0.0s
+ => [2/3] COPY rootCA.crt /usr/local/share/ca-certificates/                                                                                                                                                                                              0.0s
+ => [3/3] RUN update-ca-certificates                                                                                                                                                                                                                     0.9s
+ => exporting to image                                                                                                                                                                                                                                   0.0s
+ => => exporting layers                                                                                                                                                                                                                                  0.0s
+ => => writing image sha256:ed6816f1f725cc5977dba9d44533a23b60906a71ef42d4bfcc5a60c74e1734e7                                                                                                                                                             0.0s
+ => => naming to docker.io/library/tools_client                                                                                                                                                                                                          0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+78d7035349b719828668f9b187d4d139941bde6e96f7a71a5cbd8645a65cd870
+
+
+
+
+
+
+
+
+
+
+starting http proxy
+5323f3958f4ee51df35d750c6c4102c9c7704360bbb6d24f556e088fe3c57054
+Press any key to continue
+
+
+
+
+
+
+
+
+
+testing HTTP proxy with HTTPS specified in proxy endpoint with curl 7.29.0
+* About to connect() to proxy test_proxy port 8888 (#0)
+*   Trying 192.168.112.2...
+* Connected to test_proxy (192.168.112.2) port 8888 (#0)
+* Establish HTTP proxy tunnel to www.google.com:443
+> CONNECT www.google.com:443 HTTP/1.1
+> Host: www.google.com:443
+> User-Agent: curl/7.29.0
+> Proxy-Connection: Keep-Alive
+>
+< HTTP/1.1 200 OK
+HTTP/1.1 200 OK
+< Date: Mon, 26 Jul 2021 15:58:14 GMT
+Date: Mon, 26 Jul 2021 15:58:14 GMT
+< Transfer-Encoding: chunked
+Transfer-Encoding: chunked
+* CONNECT responded chunked
+<
+
+* Proxy replied OK to CONNECT request
+* Initializing NSS with certpath: sql:/etc/pki/nssdb
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+* Server certificate:
+* 	subject: CN=www.google.com
+* 	start date: Jun 28 04:12:58 2021 GMT
+* 	expire date: Sep 20 04:12:57 2021 GMT
+* 	common name: www.google.com
+* 	issuer: CN=GTS CA 1C3,O=Google Trust Services LLC,C=US
+> HEAD / HTTP/1.1
+> User-Agent: curl/7.29.0
+> Host: www.google.com
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+HTTP/1.1 200 OK
+< Content-Type: text/html; charset=ISO-8859-1
+Content-Type: text/html; charset=ISO-8859-1
+< P3P: CP="This is not a P3P policy! See g.co/p3phelp for more info."
+P3P: CP="This is not a P3P policy! See g.co/p3phelp for more info."
+< Date: Mon, 26 Jul 2021 15:58:14 GMT
+Date: Mon, 26 Jul 2021 15:58:14 GMT
+< Server: gws
+Server: gws
+< X-XSS-Protection: 0
+X-XSS-Protection: 0
+< X-Frame-Options: SAMEORIGIN
+X-Frame-Options: SAMEORIGIN
+< Transfer-Encoding: chunked
+Transfer-Encoding: chunked
+< Expires: Mon, 26 Jul 2021 15:58:14 GMT
+Expires: Mon, 26 Jul 2021 15:58:14 GMT
+< Cache-Control: private
+Cache-Control: private
+< Set-Cookie: 1P_JAR=2021-07-26-15; expires=Wed, 25-Aug-2021 15:58:14 GMT; path=/; domain=.google.com; Secure
+Set-Cookie: 1P_JAR=2021-07-26-15; expires=Wed, 25-Aug-2021 15:58:14 GMT; path=/; domain=.google.com; Secure
+< Set-Cookie: NID=220=IJjsLetdYnBmSg6LP1G2OGnvC69DmNbfd3EezWHRZDwx4H9IK1xCsvD2LzwOM69yTjbKvZD8cT2pMQDL5L_OoT0dKs3i2JQpyUniKSBtmkMjj29t6jvHS8FC-ymdg5cMG3mlFswEM3tOCLeAkqCxoK77BhM1M7pXLjvC7ZLGrMY; expires=Tue, 25-Jan-2022 15:58:14 GMT; path=/; domain=.google.com; HttpOnly
+Set-Cookie: NID=220=IJjsLetdYnBmSg6LP1G2OGnvC69DmNbfd3EezWHRZDwx4H9IK1xCsvD2LzwOM69yTjbKvZD8cT2pMQDL5L_OoT0dKs3i2JQpyUniKSBtmkMjj29t6jvHS8FC-ymdg5cMG3mlFswEM3tOCLeAkqCxoK77BhM1M7pXLjvC7ZLGrMY; expires=Tue, 25-Jan-2022 15:58:14 GMT; path=/; domain=.google.com; HttpOnly
+< Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+
+<
+* Connection #0 to host test_proxy left intact
+Press any key to continue
+
+
+
+
+
+
+
+
+
+testing HTTP proxy with HTTP specified in proxy endpoint with curl 7.29.0
+* About to connect() to proxy test_proxy port 8888 (#0)
+*   Trying 192.168.112.2...
+* Connected to test_proxy (192.168.112.2) port 8888 (#0)
+* Establish HTTP proxy tunnel to www.google.com:443
+> CONNECT www.google.com:443 HTTP/1.1
+> Host: www.google.com:443
+> User-Agent: curl/7.29.0
+> Proxy-Connection: Keep-Alive
+>
+< HTTP/1.1 200 OK
+HTTP/1.1 200 OK
+< Date: Mon, 26 Jul 2021 15:58:17 GMT
+Date: Mon, 26 Jul 2021 15:58:17 GMT
+< Transfer-Encoding: chunked
+Transfer-Encoding: chunked
+* CONNECT responded chunked
+<
+
+* Proxy replied OK to CONNECT request
+* Initializing NSS with certpath: sql:/etc/pki/nssdb
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+* Server certificate:
+* 	subject: CN=www.google.com
+* 	start date: Jun 28 04:12:58 2021 GMT
+* 	expire date: Sep 20 04:12:57 2021 GMT
+* 	common name: www.google.com
+* 	issuer: CN=GTS CA 1C3,O=Google Trust Services LLC,C=US
+> HEAD / HTTP/1.1
+> User-Agent: curl/7.29.0
+> Host: www.google.com
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+HTTP/1.1 200 OK
+< Content-Type: text/html; charset=ISO-8859-1
+Content-Type: text/html; charset=ISO-8859-1
+< P3P: CP="This is not a P3P policy! See g.co/p3phelp for more info."
+P3P: CP="This is not a P3P policy! See g.co/p3phelp for more info."
+< Date: Mon, 26 Jul 2021 15:58:18 GMT
+Date: Mon, 26 Jul 2021 15:58:18 GMT
+< Server: gws
+Server: gws
+< X-XSS-Protection: 0
+X-XSS-Protection: 0
+< X-Frame-Options: SAMEORIGIN
+X-Frame-Options: SAMEORIGIN
+< Transfer-Encoding: chunked
+Transfer-Encoding: chunked
+< Expires: Mon, 26 Jul 2021 15:58:18 GMT
+Expires: Mon, 26 Jul 2021 15:58:18 GMT
+< Cache-Control: private
+Cache-Control: private
+< Set-Cookie: 1P_JAR=2021-07-26-15; expires=Wed, 25-Aug-2021 15:58:18 GMT; path=/; domain=.google.com; Secure
+Set-Cookie: 1P_JAR=2021-07-26-15; expires=Wed, 25-Aug-2021 15:58:18 GMT; path=/; domain=.google.com; Secure
+< Set-Cookie: NID=220=YPorMO9xL1U2KsTXs3YprEQzYwK0pD-q1iK4NRDi3ZcFlfGm_3StlUYcU5vNvm5SOlH-UkHj_dgMG_naNrpOygCkC_UQchfVTw53tQodybBhbPLjArL8abx6Nc2p8FaYwN4RfpCrcbSNlRFVFZopadct9LU3EG6ADc1_t2pGTFE; expires=Tue, 25-Jan-2022 15:58:18 GMT; path=/; domain=.google.com; HttpOnly
+Set-Cookie: NID=220=YPorMO9xL1U2KsTXs3YprEQzYwK0pD-q1iK4NRDi3ZcFlfGm_3StlUYcU5vNvm5SOlH-UkHj_dgMG_naNrpOygCkC_UQchfVTw53tQodybBhbPLjArL8abx6Nc2p8FaYwN4RfpCrcbSNlRFVFZopadct9LU3EG6ADc1_t2pGTFE; expires=Tue, 25-Jan-2022 15:58:18 GMT; path=/; domain=.google.com; HttpOnly
+< Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+
+<
+* Connection #0 to host test_proxy left intact
+Press any key to continue
+
+
+
+
+
+
+
+
+
+testing HTTP proxy with HTTPS specified in proxy endpoint with curl 7.64.0
+* Expire in 0 ms for 6 (transfer 0x556f3d62ffb0)
+* Expire in 1 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 1 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 1 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 1 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 1 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 1 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 2 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 2 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 2 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 2 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 2 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 2 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 2 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 2 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 2 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 2 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 2 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+* Expire in 0 ms for 1 (transfer 0x556f3d62ffb0)
+*   Trying 192.168.112.2...
+* TCP_NODELAY set
+* Expire in 200 ms for 4 (transfer 0x556f3d62ffb0)
+* Connected to test_proxy (192.168.112.2) port 8888 (#0)
+* ALPN, offering http/1.1
+* successfully set certificate verify locations:
+*   CAfile: none
+  CApath: /etc/ssl/certs
+* TLSv1.3 (OUT), TLS handshake, Client hello (1):
+* error:1408F10B:SSL routines:ssl3_get_record:wrong version number
+* Closing connection 0
+curl: (35) error:1408F10B:SSL routines:ssl3_get_record:wrong version number
+Press any key to continue
+
+
+
+
+
+
+
+
+
+testing HTTP proxy with HTTP specified in proxy endpoint with curl 7.64.0
+* Expire in 0 ms for 6 (transfer 0x55c88c26ffb0)
+* Expire in 1 ms for 1 (transfer 0x55c88c26ffb0)
+* Expire in 0 ms for 1 (transfer 0x55c88c26ffb0)
+* Expire in 1 ms for 1 (transfer 0x55c88c26ffb0)
+* Expire in 0 ms for 1 (transfer 0x55c88c26ffb0)
+* Expire in 0 ms for 1 (transfer 0x55c88c26ffb0)
+* Expire in 1 ms for 1 (transfer 0x55c88c26ffb0)
+* Expire in 0 ms for 1 (transfer 0x55c88c26ffb0)
+* Expire in 0 ms for 1 (transfer 0x55c88c26ffb0)
+* Expire in 1 ms for 1 (transfer 0x55c88c26ffb0)
+* Expire in 0 ms for 1 (transfer 0x55c88c26ffb0)
+* Expire in 0 ms for 1 (transfer 0x55c88c26ffb0)
+* Expire in 1 ms for 1 (transfer 0x55c88c26ffb0)
+* Expire in 0 ms for 1 (transfer 0x55c88c26ffb0)
+* Expire in 0 ms for 1 (transfer 0x55c88c26ffb0)
+* Expire in 2 ms for 1 (transfer 0x55c88c26ffb0)
+* Expire in 0 ms for 1 (transfer 0x55c88c26ffb0)
+* Expire in 0 ms for 1 (transfer 0x55c88c26ffb0)
+* Expire in 2 ms for 1 (transfer 0x55c88c26ffb0)
+* Expire in 0 ms for 1 (transfer 0x55c88c26ffb0)
+* Expire in 0 ms for 1 (transfer 0x55c88c26ffb0)
+* Expire in 2 ms for 1 (transfer 0x55c88c26ffb0)
+* Expire in 0 ms for 1 (transfer 0x55c88c26ffb0)
+* Expire in 0 ms for 1 (transfer 0x55c88c26ffb0)
+* Expire in 0 ms for 1 (transfer 0x55c88c26ffb0)
+*   Trying 192.168.112.2...
+* TCP_NODELAY set
+* Expire in 200 ms for 4 (transfer 0x55c88c26ffb0)
+* Connected to test_proxy (192.168.112.2) port 8888 (#0)
+* allocate connect buffer!
+* Establish HTTP proxy tunnel to www.google.com:443
+> CONNECT www.google.com:443 HTTP/1.1
+> Host: www.google.com:443
+> User-Agent: curl/7.64.0
+> Proxy-Connection: Keep-Alive
+>
+< HTTP/1.1 200 OK
+HTTP/1.1 200 OK
+< Date: Mon, 26 Jul 2021 15:58:24 GMT
+Date: Mon, 26 Jul 2021 15:58:24 GMT
+< Transfer-Encoding: chunked
+Transfer-Encoding: chunked
+* Ignoring Transfer-Encoding in CONNECT 200 response
+<
+
+* Proxy replied 200 to CONNECT request
+* CONNECT phase completed!
+* ALPN, offering h2
+* ALPN, offering http/1.1
+* successfully set certificate verify locations:
+*   CAfile: none
+  CApath: /etc/ssl/certs
+* TLSv1.3 (OUT), TLS handshake, Client hello (1):
+* CONNECT phase completed!
+* CONNECT phase completed!
+* TLSv1.3 (IN), TLS handshake, Server hello (2):
+* TLSv1.3 (IN), TLS handshake, Encrypted Extensions (8):
+* TLSv1.3 (IN), TLS handshake, Certificate (11):
+* TLSv1.3 (IN), TLS handshake, CERT verify (15):
+* TLSv1.3 (IN), TLS handshake, Finished (20):
+* TLSv1.3 (OUT), TLS change cipher, Change cipher spec (1):
+* TLSv1.3 (OUT), TLS handshake, Finished (20):
+* SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384
+* ALPN, server accepted to use h2
+* Server certificate:
+*  subject: CN=www.google.com
+*  start date: Jun 28 04:12:58 2021 GMT
+*  expire date: Sep 20 04:12:57 2021 GMT
+*  subjectAltName: host "www.google.com" matched cert's "www.google.com"
+*  issuer: C=US; O=Google Trust Services LLC; CN=GTS CA 1C3
+*  SSL certificate verify ok.
+* Using HTTP2, server supports multi-use
+* Connection state changed (HTTP/2 confirmed)
+* Copying HTTP/2 data in stream buffer to connection buffer after upgrade: len=0
+* Using Stream ID: 1 (easy handle 0x55c88c26ffb0)
+> HEAD / HTTP/2
+> Host: www.google.com
+> User-Agent: curl/7.64.0
+> Accept: */*
+>
+* TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+* TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+* old SSL session ID is stale, removing
+* Connection state changed (MAX_CONCURRENT_STREAMS == 100)!
+< HTTP/2 200
+HTTP/2 200
+< content-type: text/html; charset=ISO-8859-1
+content-type: text/html; charset=ISO-8859-1
+< p3p: CP="This is not a P3P policy! See g.co/p3phelp for more info."
+p3p: CP="This is not a P3P policy! See g.co/p3phelp for more info."
+< date: Mon, 26 Jul 2021 15:58:24 GMT
+date: Mon, 26 Jul 2021 15:58:24 GMT
+< server: gws
+server: gws
+< x-xss-protection: 0
+x-xss-protection: 0
+< x-frame-options: SAMEORIGIN
+x-frame-options: SAMEORIGIN
+< expires: Mon, 26 Jul 2021 15:58:24 GMT
+expires: Mon, 26 Jul 2021 15:58:24 GMT
+< cache-control: private
+cache-control: private
+< set-cookie: 1P_JAR=2021-07-26-15; expires=Wed, 25-Aug-2021 15:58:24 GMT; path=/; domain=.google.com; Secure
+set-cookie: 1P_JAR=2021-07-26-15; expires=Wed, 25-Aug-2021 15:58:24 GMT; path=/; domain=.google.com; Secure
+< set-cookie: NID=220=sc6MbcKOFeXrllZkk8ljWyT99uvpaGJmMd-bdebi56US4CfZ1-Ryl5QOoW4CoyohiCXoDqXjmNoZKaU8H0DRCXSmCaczn7v-h3oAzf0UJhY1UNhwD96oSMGar-16YBG-Y-qVZ89KZMdrJgTVQIgg2TsgRftBhpY_c55jbb--J3o; expires=Tue, 25-Jan-2022 15:58:24 GMT; path=/; domain=.google.com; HttpOnly
+set-cookie: NID=220=sc6MbcKOFeXrllZkk8ljWyT99uvpaGJmMd-bdebi56US4CfZ1-Ryl5QOoW4CoyohiCXoDqXjmNoZKaU8H0DRCXSmCaczn7v-h3oAzf0UJhY1UNhwD96oSMGar-16YBG-Y-qVZ89KZMdrJgTVQIgg2TsgRftBhpY_c55jbb--J3o; expires=Tue, 25-Jan-2022 15:58:24 GMT; path=/; domain=.google.com; HttpOnly
+< alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+
+<
+* Connection #0 to host test_proxy left intact
+Press any key to continue
+
+
+
+
+
+
+
+
+
+starting https proxy
+test_proxy
+485e536daa7b574336e06f0e90a79c59c317fdfdf511dec922e5b5c92b36f309
+Press any key to continue
+
+
+
+
+
+
+
+
+
+testing HTTPS proxy with HTTPS specified in proxy endpoint with curl 7.29.0
+* About to connect() to proxy test_proxy port 8888 (#0)
+*   Trying 192.168.112.2...
+* Connected to test_proxy (192.168.112.2) port 8888 (#0)
+* Establish HTTP proxy tunnel to www.google.com:443
+> CONNECT www.google.com:443 HTTP/1.1
+> Host: www.google.com:443
+> User-Agent: curl/7.29.0
+> Proxy-Connection: Keep-Alive
+>
+* Proxy CONNECT aborted
+* Connection #0 to host test_proxy left intact
+curl: (56) Proxy CONNECT aborted
+Press any key to continue
+
+
+
+
+
+
+
+
+
+testing HTTPS proxy with HTTP specified in proxy endpoint with curl 7.29.0
+* About to connect() to proxy test_proxy port 8888 (#0)
+*   Trying 192.168.112.2...
+* Connected to test_proxy (192.168.112.2) port 8888 (#0)
+* Establish HTTP proxy tunnel to www.google.com:443
+> CONNECT www.google.com:443 HTTP/1.1
+> Host: www.google.com:443
+> User-Agent: curl/7.29.0
+> Proxy-Connection: Keep-Alive
+>
+* Proxy CONNECT aborted
+* Closing connection 0
+curl: (56) Proxy CONNECT aborted
+Press any key to continue
+
+
+
+
+
+
+
+
+
+testing HTTPS proxy with HTTPS specified in proxy endpoint with curl 7.64.0
+* Expire in 0 ms for 6 (transfer 0x55a882f71fb0)
+* Expire in 1 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 0 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 1 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 0 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 0 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 1 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 0 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 0 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 1 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 0 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 0 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 1 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 0 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 0 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 1 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 0 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 0 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 1 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 0 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 0 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 1 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 0 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 0 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 2 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 0 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 0 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 2 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 0 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 0 ms for 1 (transfer 0x55a882f71fb0)
+* Expire in 0 ms for 1 (transfer 0x55a882f71fb0)
+*   Trying 192.168.112.2...
+* TCP_NODELAY set
+* Expire in 200 ms for 4 (transfer 0x55a882f71fb0)
+* Connected to test_proxy (192.168.112.2) port 8888 (#0)
+* ALPN, offering http/1.1
+* successfully set certificate verify locations:
+*   CAfile: none
+  CApath: /etc/ssl/certs
+* TLSv1.3 (OUT), TLS handshake, Client hello (1):
+* TLSv1.3 (IN), TLS handshake, Server hello (2):
+* TLSv1.3 (IN), TLS handshake, Encrypted Extensions (8):
+* TLSv1.3 (IN), TLS handshake, Certificate (11):
+* TLSv1.3 (IN), TLS handshake, CERT verify (15):
+* TLSv1.3 (IN), TLS handshake, Finished (20):
+* TLSv1.3 (OUT), TLS change cipher, Change cipher spec (1):
+* TLSv1.3 (OUT), TLS handshake, Finished (20):
+* SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384
+* ALPN, server accepted to use http/1.1
+* Proxy certificate:
+*  subject: CN=test_proxy
+*  start date: Jul 26 15:58:00 2021 GMT
+*  expire date: Nov 23 15:58:00 2021 GMT
+*  subjectAltName: host "test_proxy" matched cert's "test_proxy"
+*  issuer: C=US; ST=CO; O=ORG; OU=ORG_UNIT; CN=SWIMLANE_ROOT
+*  SSL certificate verify ok.
+* allocate connect buffer!
+* Establish HTTP proxy tunnel to www.google.com:443
+> CONNECT www.google.com:443 HTTP/1.1
+> Host: www.google.com:443
+> User-Agent: curl/7.64.0
+> Proxy-Connection: Keep-Alive
+>
+* TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+< HTTP/1.1 200 OK
+HTTP/1.1 200 OK
+< Date: Mon, 26 Jul 2021 15:58:36 GMT
+Date: Mon, 26 Jul 2021 15:58:36 GMT
+< Transfer-Encoding: chunked
+Transfer-Encoding: chunked
+* Ignoring Transfer-Encoding in CONNECT 200 response
+<
+
+* Proxy replied 200 to CONNECT request
+* CONNECT phase completed!
+* ALPN, offering h2
+* ALPN, offering http/1.1
+* successfully set certificate verify locations:
+*   CAfile: none
+  CApath: /etc/ssl/certs
+* TLSv1.3 (OUT), TLS handshake, Client hello (1):
+* CONNECT phase completed!
+* CONNECT phase completed!
+* TLSv1.3 (IN), TLS handshake, Server hello (2):
+* TLSv1.3 (IN), TLS handshake, Encrypted Extensions (8):
+* TLSv1.3 (IN), TLS handshake, Certificate (11):
+* TLSv1.3 (IN), TLS handshake, CERT verify (15):
+* TLSv1.3 (IN), TLS handshake, Finished (20):
+* TLSv1.3 (OUT), TLS change cipher, Change cipher spec (1):
+* TLSv1.3 (OUT), TLS handshake, Finished (20):
+* SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384
+* ALPN, server accepted to use h2
+* Server certificate:
+*  subject: CN=www.google.com
+*  start date: Jun 28 04:12:58 2021 GMT
+*  expire date: Sep 20 04:12:57 2021 GMT
+*  subjectAltName: host "www.google.com" matched cert's "www.google.com"
+*  issuer: C=US; O=Google Trust Services LLC; CN=GTS CA 1C3
+*  SSL certificate verify ok.
+* Using HTTP2, server supports multi-use
+* Connection state changed (HTTP/2 confirmed)
+* Copying HTTP/2 data in stream buffer to connection buffer after upgrade: len=0
+* Using Stream ID: 1 (easy handle 0x55a882f71fb0)
+> HEAD / HTTP/2
+> Host: www.google.com
+> User-Agent: curl/7.64.0
+> Accept: */*
+>
+* TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+* TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+* old SSL session ID is stale, removing
+* Connection state changed (MAX_CONCURRENT_STREAMS == 100)!
+< HTTP/2 200
+HTTP/2 200
+< content-type: text/html; charset=ISO-8859-1
+content-type: text/html; charset=ISO-8859-1
+< p3p: CP="This is not a P3P policy! See g.co/p3phelp for more info."
+p3p: CP="This is not a P3P policy! See g.co/p3phelp for more info."
+< date: Mon, 26 Jul 2021 15:58:37 GMT
+date: Mon, 26 Jul 2021 15:58:37 GMT
+< server: gws
+server: gws
+< x-xss-protection: 0
+x-xss-protection: 0
+< x-frame-options: SAMEORIGIN
+x-frame-options: SAMEORIGIN
+< expires: Mon, 26 Jul 2021 15:58:37 GMT
+expires: Mon, 26 Jul 2021 15:58:37 GMT
+< cache-control: private
+cache-control: private
+< set-cookie: 1P_JAR=2021-07-26-15; expires=Wed, 25-Aug-2021 15:58:37 GMT; path=/; domain=.google.com; Secure
+set-cookie: 1P_JAR=2021-07-26-15; expires=Wed, 25-Aug-2021 15:58:37 GMT; path=/; domain=.google.com; Secure
+< set-cookie: NID=220=sjeJckFfCAPNkF4Q3e1IpvfU4mJE6swZKHkmICnC1G4msBpZ1rnrCRLVWoVCuhHZJwBrsVPh_50beXb5VIioUxL3MAODP79CXHC2xu82Z5EokbVZCNqdqgqxRcNG4bLQ5NtlmvgjKxDDFjh7SbUNShy4PGW1IRfBoaGqSUXy8sc; expires=Tue, 25-Jan-2022 15:58:37 GMT; path=/; domain=.google.com; HttpOnly
+set-cookie: NID=220=sjeJckFfCAPNkF4Q3e1IpvfU4mJE6swZKHkmICnC1G4msBpZ1rnrCRLVWoVCuhHZJwBrsVPh_50beXb5VIioUxL3MAODP79CXHC2xu82Z5EokbVZCNqdqgqxRcNG4bLQ5NtlmvgjKxDDFjh7SbUNShy4PGW1IRfBoaGqSUXy8sc; expires=Tue, 25-Jan-2022 15:58:37 GMT; path=/; domain=.google.com; HttpOnly
+< alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+
+<
+* Connection #0 to host test_proxy left intact
+Press any key to continue
+
+
+
+
+
+
+
+
+
+testing HTTPS proxy with HTTP specified in proxy endpoint with curl 7.64.0
+* Expire in 0 ms for 6 (transfer 0x55e958676fb0)
+* Expire in 1 ms for 1 (transfer 0x55e958676fb0)
+* Expire in 0 ms for 1 (transfer 0x55e958676fb0)
+* Expire in 1 ms for 1 (transfer 0x55e958676fb0)
+* Expire in 0 ms for 1 (transfer 0x55e958676fb0)
+* Expire in 0 ms for 1 (transfer 0x55e958676fb0)
+* Expire in 1 ms for 1 (transfer 0x55e958676fb0)
+* Expire in 0 ms for 1 (transfer 0x55e958676fb0)
+* Expire in 0 ms for 1 (transfer 0x55e958676fb0)
+* Expire in 1 ms for 1 (transfer 0x55e958676fb0)
+* Expire in 0 ms for 1 (transfer 0x55e958676fb0)
+* Expire in 0 ms for 1 (transfer 0x55e958676fb0)
+* Expire in 2 ms for 1 (transfer 0x55e958676fb0)
+* Expire in 0 ms for 1 (transfer 0x55e958676fb0)
+* Expire in 0 ms for 1 (transfer 0x55e958676fb0)
+* Expire in 2 ms for 1 (transfer 0x55e958676fb0)
+* Expire in 0 ms for 1 (transfer 0x55e958676fb0)
+* Expire in 0 ms for 1 (transfer 0x55e958676fb0)
+* Expire in 2 ms for 1 (transfer 0x55e958676fb0)
+* Expire in 0 ms for 1 (transfer 0x55e958676fb0)
+* Expire in 0 ms for 1 (transfer 0x55e958676fb0)
+* Expire in 2 ms for 1 (transfer 0x55e958676fb0)
+* Expire in 0 ms for 1 (transfer 0x55e958676fb0)
+* Expire in 0 ms for 1 (transfer 0x55e958676fb0)
+* Expire in 2 ms for 1 (transfer 0x55e958676fb0)
+* Expire in 0 ms for 1 (transfer 0x55e958676fb0)
+* Expire in 0 ms for 1 (transfer 0x55e958676fb0)
+* Expire in 0 ms for 1 (transfer 0x55e958676fb0)
+*   Trying 192.168.112.2...
+* TCP_NODELAY set
+* Expire in 200 ms for 4 (transfer 0x55e958676fb0)
+* Connected to test_proxy (192.168.112.2) port 8888 (#0)
+* allocate connect buffer!
+* Establish HTTP proxy tunnel to www.google.com:443
+> CONNECT www.google.com:443 HTTP/1.1
+> Host: www.google.com:443
+> User-Agent: curl/7.64.0
+> Proxy-Connection: Keep-Alive
+>
+* Proxy CONNECT aborted
+* CONNECT phase completed!
+* Closing connection 0
+curl: (56) Proxy CONNECT aborted
+test_proxy
+proxy_test_network
